@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://i.imgur.com/pU5A58S.png" alt="Microsoft Active Directory Logo"/>
+<img width="500" alt="image" src="https://conceptodefinicion.de/wp-content/uploads/2014/06/ccna.jpg">
 </p>
 
 <h1>On-premises Active Directory Deployed in the Cloud (Azure)</h1>
