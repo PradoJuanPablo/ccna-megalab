@@ -2,13 +2,13 @@
 <img width="500" alt="image" src="https://conceptodefinicion.de/wp-content/uploads/2014/06/ccna.jpg">
 </p>
 
-<h1>On-premises Active Directory Deployed in the Cloud (Azure)</h1>
-This tutorial outlines the implementation of on-premises Active Directory within Azure Virtual Machines.<br />
+<h1>Complete Network Configuration </h1>
+This "CCNA Mega Lab" tutorial by Jeremy’s IT Lab is a hands-on walk thorugh that teaches how to configure a complete network using VLANs, OSPF, STP, DHCP, security, and wireless.<br />
 
 
 <h2>Video Demonstration</h2>
 
-- ### [YouTube: How to Deploy on-premises Active Directory within Azure Compute](https://www.youtube.com)
+- ### [YouTube: CCNA Mega Lab]([https://www.youtube.com](https://www.youtube.com/watch?v=2p7-MluKAgE))
 
 <h2>Environments and Technologies Used</h2>
 
