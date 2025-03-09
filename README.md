@@ -56,7 +56,6 @@ In this first step I am adding a basic configuration to each router and switch. 
 
 <p>
 <img <img width="476" alt="image" src="https://github.com/user-attachments/assets/0f625279-93a6-4c20-af89-3e0f8f996e6b"/>
-<img <img width="258" alt="image" src="https://github.com/user-attachments/assets/c07634ac-85a8-4ca3-97c1-85236fe61921"/>
 <img <img width="299" alt="image" src="https://github.com/user-attachments/assets/2065611e-ef4a-4f4f-903a-1fa721c4e947"/>
 
 </p>
@@ -66,19 +65,32 @@ Part 2, Step 1:
 <p>
 In the first section, it mentions to configure an EtherChannel using a Cisco-proprietary protocol. For this, we will use Port Aggregation Protocol (PAgP) between DSW-A1 and DSW-A2. PAgP is used to automatically combine multiple physical links into a single logical link, called EtherChannel. This helps increase bandwidth and provides redundancy. It operates in 2 modes: Desireable and Auto. Desireable mode tries to actively form an EtherChannel with the other device. Auto mode waits for the other device to initiate the EtherChannel but won't start it itself. For PAgP to work, one side has to be Desirable.
 
+
 <img width="251" alt="image" src="https://github.com/user-attachments/assets/583b0828-ecd8-4561-b1f5-2545f371d3a7"/>
 </p>
 
 Part 2, Step 2:
 <p>
-  fsfsf
+  The second section asks to use an open standard protocol. In this case, we will use Link Aggregation Control Protocol. It works like PAgP, however; it has 2 modes: Active mode and Passive mode. Active mode actively tries to form an EtherChannel. Passive mode waits for the other device to start the EtherChannel. For this protocol to work, one side must be Active, or both sides can be active.
+<p></p>
+<img width="258" alt="image" src="https://github.com/user-attachments/assets/c07634ac-85a8-4ca3-97c1-85236fe61921"/>
+  
 </p>
+
+Part 2, Step 3:
+<p>
+Step 3 wants us to configure trunk links between the Distribution and Access switches. This will ensure that VLAN traffic is able to pass through. To complete this step, I disabled Dynamic Trunking Protocol (DTP) to prevent automatic trunk negotiation. I also changed the native VLAN to VLAN 1000 to prevent VLAN hopping attacks. I then allow only specific VLANs on each trunk, VLANs 10, 20, 40, 99 in Office A and VLANs 10, 20, 30, 99 in Office B. By doing this, I ensure that only the required VLANs are carried over the trunks, improving security and efficiency. 
+
+
 <br />
 
 <p>
 <img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
+Part 2, Step 4:
+
 <p>
+  
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 </p>
 <br />
