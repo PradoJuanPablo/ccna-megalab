@@ -122,6 +122,8 @@ Step 9:
 The final step is to shut down all unused ports on all Distribution and Access switches to improve security and stability. I used the command "show interface status" to verify the correct ports were shut down.
 </p>
 <img width="326" alt="image" src="https://github.com/user-attachments/assets/58117b2b-586e-43f0-ba2d-ec7a14108fe3" />
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/962552d6-af9e-4393-b612-e76c87c2e745" />
+
 
 </p>
 <p>
