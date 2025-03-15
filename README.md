@@ -133,8 +133,84 @@ The final step is to shut down all unused ports on all Distribution and Access s
 <img width="700" alt="image" src="https://github.com/user-attachments/assets/0734e811-f673-4461-a04f-06d8327475fc" />
 
 
+</p>
+Step 1:
+</p>
+<p>
+In this step, I consoled into R1. I set interfaces G0/0/0 and G0/1/0 to act as DHCP clients. Meaning they will automatically be assigned an IP address from a DHCP server. For interfaces G0/0, G0/1, and Loopback0, I manually assigned them an IP address. At the end, I ran the command "do show ip interface brief" to ensure a correct configuration.
+</p>
 
+<img width="242" alt="image" src="https://github.com/user-attachments/assets/48147d4f-0597-4550-8181-533e1dd1bc39" />
+<img width="527" alt="Part 3, Step 1" src="https://github.com/user-attachments/assets/090a1179-2447-42ca-9fd1-e95f02b0e2d6" />
 
+</p>
+Step 2:
+</p>
+<p>
+In this step, I turned on IPv4 routing on all Core and Distribution switches by entering the command "ip routing". This will allow them to forward data between different networks.
+</p>
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/9fab0138-8636-491f-9c1e-221166367819" />
+
+</p>
+Step 3:
+</p>
+<p>
+In this step, I created a layer-3 EtherChannel between CSW1 and CSW2 using a Cisco proprietary protocol (PAgP). Since, both switches are set to desirable, they will actively try to form the EtherChannel. To complete this step, I assigned IP addresses to the PortChanel interface to ensure routing between the two Core Switches. A PortChannel is a virtual interface created by bundling multiple physical links into a single logical one. At the end, I ran the command "do show etherchannel summary" to ensure a correct configuration. 
+</p>
+<img width="257" alt="image" src="https://github.com/user-attachments/assets/f2439ecf-c243-4c77-9a29-3e5d0b88d959" />
+<img width="449" alt="Part 3, Step 3" src="https://github.com/user-attachments/assets/0b6dfa86-beac-4f7c-b907-4f1f33005525" />
+
+</p>
+Step 4-5:
+</p>
+<p>
+In steps 4-5, I manually set IP addresses on multiple interfaces od CSW1 and CSW2 to allow communication between them. I then disabled unused ports to improve security and prevent unauthorized connections. 
+</p>
+<img width="380" alt="image" src="https://github.com/user-attachments/assets/a2176e70-f1ef-4d34-8880-80431fb6f3fc" />
+
+</p>
+Step 6-9:
+</p>
+<p>
+In steps 6-9, I configure IP addresses on all Distribution switches. I assign IPs on the neccessary interfaces to make sure they can route traffic porperly. I also set up loopback interfaces, which helps with network management and routing protocols by remaining active and accessible. 
+</p>
+<img width="422" alt="image" src="https://github.com/user-attachments/assets/3ed23e6c-292b-43f7-bbcb-5cb3e2f67605" />
+
+</p>
+Step 10:
+</p>
+<p>
+In this step, I configure SRV1's IP settings via the GUI. I assign it a default gateway, an IP address and a subnet mask. 
+</p>
+<img width="208" alt="image" src="https://github.com/user-attachments/assets/f5d980d9-3e98-4634-ba1a-b89ea7677fa8" />
+<img width="533" alt="image" src="https://github.com/user-attachments/assets/a004f5ea-38d2-41ea-81e5-33fd4b2a8190" />
+
+</p>
+Step 11:
+</p>
+<p>
+In this step, I configure IPs on VLAN 99 as it is used for management. I set their default gateway to the first usable IP in their subnet to allow proper routing
+</p>
+<img width="329" alt="image" src="https://github.com/user-attachments/assets/ae421143-5239-4f71-8f43-646dd9062bba" />
+
+</p>
+Step 12-15:
+</p>
+<p>
+In these steps, I configure Hot Standby Router Protocol (HSRPv2) on VLANS 99, 10, 20, 40 in Office A. HSRP is used to provide redundancy, ensuring that another router takes over in case one fails. I then set up Virtual IP addresses (VIPs) for each VLAN in Offices A and B, with one router acting as the primary and the other as backup. One router, or layer 3 switch, is elected as the "Active" router, which responds to traffic sent to the VIP. As the name suggests, the "Standby" router is on standby in case the active router fails. Hosts use the VIP as their default gateway, so they don't need to change their settings if a failure occurs. I also adjust the router priorty and enabled preemption, so the preferred router takes over automatically if it recovers from failure. Preemption allows a router with a higher priority to take over as the Active router when it comes online, even if another router is already active. 
+</p>
+<img width="295" alt="image" src="https://github.com/user-attachments/assets/19e6002c-66e0-46f5-8e16-5127b53834c4" />
+
+</p>
+Step 16-19:
+</p>
+<p>
+In these steps, I configure similar settings for VLANs 99, 10, 20, 30 for Office B. 
+</p>
+<img width="245" alt="image" src="https://github.com/user-attachments/assets/e474ea1c-4136-4048-ae34-1a87628c154f" />
+
+</p>
+<h2>Part 4 – Rapid Spanning Tree Protocol </h2>
 
 <p>
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
