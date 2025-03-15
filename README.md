@@ -128,6 +128,14 @@ The final step is to shut down all unused ports on all Distribution and Access s
 </p>
 <h2>Part 3 – IP Addresses, Layer-3 EtherChannel, HSRP </h2>
 
+<img width="700" alt="image" src="https://github.com/user-attachments/assets/664c65b0-a123-4052-a4bf-d3c5e10e9af2" />
+
+<img width="700" alt="image" src="https://github.com/user-attachments/assets/0734e811-f673-4461-a04f-06d8327475fc" />
+
+
+
+
+
 <p>
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 </p>
