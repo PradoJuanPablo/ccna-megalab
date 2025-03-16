@@ -250,7 +250,38 @@ Notice in the screenshot below that I ran into an issue enabling PortFast on int
 <br />
 </p>
 <h2>Part 5 – Static and Dynamic Routing </h2>
+</p>
+</p>
+<img width="638" alt="image" src="https://github.com/user-attachments/assets/0f9d02d1-3b8e-474b-92a7-26f02bdf757d" />
 
+</p>
+Step 1:
+</p>
+<p>
+In this first part, I configured Open Shortest Path First(OSPF) on R1's LAN-facing interfaces and on all Layer-3 switches (Core and Distribution switches). OSPF is a link-state routing protocol that dynamically exchanges routing information and calculates the best path to a destination. I ensured all devices were in Area 0, the backbone area. On R1, I set OSPF with Process ID 1 and assigned it a Router ID of 10.0.0.76, which is the loopback interface IP. Next, I set the loopback interface as passive to prevent OSPF Hello packets from being sent out. I then enabled OSPF on the loopback and physical interfaces. Setting the network type to point-to-point prevents uncecessary Designated Router (DR0 and Backup Designated Router (BDR) elections on direct links. 
+</p>
+For CSW1 and CSW2, I configured OSPF with Process ID 1 and assigned a Router ID for each switch. I then set the loopback interfaces as passive since they don't need to form OSPF adjacencies. Next, I sed the "network" command to specify excatly which interfaces should participate in OSPF. Thw wildcard 0.0.0.0 ensures OSPF runs only on the specified interface. On both switches, I configured OSPF for the physical interfaces and set the network type to point-to-point. 
+</p>
+</p>
+For the Distribution switches, we configure OSPF with Process ID 1 and assign a Router ID. I set loopback interfaces and VLAN SVIs (except VLAN 99) as passive, preventing OSPF Hello messages on these interfaces. I then configured OSPF for the necessary interfaces using the "network" command. I also ensured the physical interfaces connecting to OSPF neighbors were set to point-to-point. This prevents the unnecessary election of DR/BDRs in OSPF.
+</p>
+<img width="340" alt="image" src="https://github.com/user-attachments/assets/03db3797-3972-49d8-a7df-4275c7143277" />
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/a74798d5-7e01-45c8-aa08-ae69e5a0c6e6" />
+
+</p>
+Step 2:
+</p>
+</p>
+In this part, I configure static routes on R1's Internet connections, pointing to different next-hop IPs. I set one of the next-hop IPs to 203.0.113.1, which is the ISP's address. I configure the second next-hop IP of 203.0.113.5 with an Administrative Distance of 2, making it a floating static route. This is a backup incase the primary fails. I used the command "Do show ip route" to verify that only 1 is active in the routing table. 
+</p>
+</p>
+Next, I set R1 as an OSPF ASBR (Autonomous System Boundary Router) to advertise its default route to other routers in the OSPF domain. This is to ensure that all OSPF routers recive the default route and can foward internet-bounfd traffic to R1. I confirm this has been set by sending a ping command to R1's internet IP at 203.0.113.2. If I try to ping the IPs IP, as shown in the screenshot, I get five "U"s, meaning unreachable. To solve this, we need to configure NAT (Network Address Translation). 
+</p>
+<img width="302" alt="image" src="https://github.com/user-attachments/assets/ad580949-43b9-4c14-9e5a-39405a5949d9" />
+<img width="516" alt="Part 5, Step 2B" src="https://github.com/user-attachments/assets/32afa90a-d00f-4eb7-b7b0-080f579acbf5" />
+</p>
+<h2>Part 6 - Network Services: DHCP, DNS, NTP, SNMP, Syslog, FTP, SSH, NAT </h2>
+</p>
 <p>
 <p>
 <img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
