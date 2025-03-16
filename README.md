@@ -93,7 +93,7 @@ Step 3 wants us to configure trunk links between the Distribution and Access swi
 Step 4:
 
 <p>
-  
+
 In this step, I configured one Distribution switch in each office as a VTPv2 server and set the VTP domain name to "JeremysITLab". The VTP protocol automates VLAN configuration management across multiple switches. A VTP server is able to create, modify, and delete VLANs, and automatically sync those changes to the VTP clients. This helps reduce manual configuration errors. I configured all Access switches as VTP clients so they can receive VLAN updates from the server. This setup ensures consistency across the network.
 
 <img width="272" alt="image" src="https://github.com/user-attachments/assets/65740fdb-17c8-4df1-b8e6-affc5b480a86" />
@@ -213,10 +213,45 @@ In these steps, I configure similar settings for VLANs 99, 10, 20, 30 for Office
 <h2>Part 4 – Rapid Spanning Tree Protocol </h2>
 
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-</p>
-<br />
+<img width="639" alt="image" src="https://github.com/user-attachments/assets/8d382166-d67c-4294-ab34-757382d826d9" />
 
+</p>
+Step 1:
+</p>
+<p>
+In this step, I configure Rapid Per-VLAN Spanning Tree Plus(PVST+) on all Access and Distribution switches. Rapid PVST+ is a spanning tree protocol that creates a separate loop-free path for each VLAN, helping the network adjust quickly and manage traffic better. In Office A, I configure DSW-A1 as the Root Bridge for VLANs 99 and 10. On DSW-A2, I set it as the Root Bridge for VLANs 20 and 40. The same applies in Office B with VLAN 30 replacing VLAN 40. The task asks to configure the lowest possible STP priority, so I set it to priority 0. 
+</p>
+I then set the HSRP STandby Router to have an STP priority one increment higher than the Root Bridge, which will be 4096. If the active router or Root Bridge fails, this standby switch will take over, keeping the netwrok stable without major disruptions.
+</p>
+<img width="367" alt="image" src="https://github.com/user-attachments/assets/6fd439db-dde2-4663-b04a-fc2ffaac21e8" />
+
+![Part 4, Step 1](https://github.com/user-attachments/assets/270798cd-5a9c-4b44-a1a4-101e45f9a106)
+
+
+
+</p>
+Step 2:
+</p>
+</p>
+On all ports connected to end hosts, Access switches and WLC1, I enable PortFast and BPDU Guard. PortFast allows the ports to skip the STP listening and learning states and immediately transition to the forwarding state. This helps devices connect quickly without delays, which is especially useful for PCs, printers, and acess points. BPDU Guard prevents accidental network loops by disabling any port that recives a BPDU. If a switch is mistakenly plugged into an access port, BPDU Guard will shut down that port to protect the network. 
+</p>
+This configuration improves network efficiency, reduces downtime, and prevents spanning tree loops.
+</p>
+</p>
+Notice in the screenshot below that I ran into an issue enabling PortFast on interface F0/2. Interface F0/2 is a trunk port because it is connected to WLC1. To solve this problem, we enter the command "Spanning-tree portfast trunk". This command will enable PortFast on the interface even in trunk mode.
+</p>
+
+
+<img width="330" alt="image" src="https://github.com/user-attachments/assets/b0414806-a2c0-4866-b14d-6723af65172a" />
+
+![Part 4, Step 2](https://github.com/user-attachments/assets/9c7cdb96-59c4-4036-8e82-f9572119a915)
+
+
+<br />
+</p>
+<h2>Part 5 – Static and Dynamic Routing </h2>
+
+<p>
 <p>
 <img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
