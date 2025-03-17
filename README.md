@@ -282,6 +282,148 @@ Next, I set R1 as an OSPF ASBR (Autonomous System Boundary Router) to advertise 
 </p>
 <h2>Part 6 - Network Services: DHCP, DNS, NTP, SNMP, Syslog, FTP, SSH, NAT </h2>
 </p>
+<img width="804" alt="image" src="https://github.com/user-attachments/assets/6ad88d33-5d7b-4e59-9ac5-5e19e98454af" />
+<img width="945" alt="image" src="https://github.com/user-attachments/assets/7aecf860-77bd-4869-b7e5-8ec61084a840" />
+</p>
+Step 1:
+</p>
+</p>
+In this step, I first excluded the first 10 usable IP addresses in each pool to prevent them from being assigned to clients. I then created DHCP pools for different network segments (Management, PCs, Phones, Wi-Fi). Next, I assigned network parameters to each pool, meaning the default gateway, domain name, DNS server, and WLC when needed.
+</p>
+<img width="323" alt="image" src="https://github.com/user-attachments/assets/d792cd79-9c9d-45c1-830b-2fa18ad6cd0e" />
+</p>
+Step 2:
+</p>
+</p>
+In the second step, I configure the Distribution switches to forward DHCP requests to R1. I use the DHCP Relay agent (ip helper-address) to allow DHCP clients to get an IP from the DHCP server. To test, I enter into the COmmand Prompt on PC1 and type "ipconfig /renew" to send a DHCP Discover packet and retrieve an IP address. I also get some successful ping replies from R1's loopback and Internet interfaces.
+
+</p>
+<img width="256" alt="image" src="https://github.com/user-attachments/assets/b0ccbec0-8dd4-4d53-95a7-0b94aa78ad29" />
+<img width="578" alt="Part 6, Step 2" src="https://github.com/user-attachments/assets/7adaf10c-d373-4bb3-8092-226d57752346" />
+</p>
+Step 3:
+</p>
+</p>
+In this step, I enabled DNS on SRV1 and added entries for Google.com, Youtube.com and Jeremysitlab.com. I also set a CNAME record to map an alias, www.jeremysitlab.com to the domain jeremysitlab.com
+</p>
+<img width="487" alt="image" src="https://github.com/user-attachments/assets/43d2d86b-964f-4f01-94a4-1991e99a28a1" />
+
+<img width="456" alt="Part 6, Step 3" src="https://github.com/user-attachments/assets/6693fca0-dc96-4c3e-b1c6-f496384d9984" />
+</p>
+Step 4:
+</p>
+</p>
+In step 4, I configure all devices to use the domain name jeremysitlab.com and set SRV1 as the DNS Server. 
+
+</p>
+<img width="234" alt="image" src="https://github.com/user-attachments/assets/73369ef9-a1c5-4156-b39d-3a0c6ce31561" />
+</p>
+Step 5:
+</p>
+</p>
+In this step, I set R1 as an NTP (Network Time Protocol) server. NTP is used to synchronize time across devices. I then sync R1 to an external NTP server using the IP 216.239.35.0.
+</p>
+<img width="226" alt="image" src="https://github.com/user-attachments/assets/cd96558b-3f4d-4a76-acb5-b84c4b477450" />
+</p>
+Step 6:
+</p>
+</p>
+In this step, I configure NTP authentication on all switches. I first set authentication key 1 (ccna) on R1. On the switches, I set R1 as the NTP server. Using these commands ensures that the devices trust R1 as the time source. 
+</p>
+<img width="319" alt="image" src="https://github.com/user-attachments/assets/f071691b-ff3a-46ba-b496-50ef635daa77" />
+</p>
+Step 7-8:
+</p>
+</p>
+In steps 7 and 8, I configure Simple Network Management Protocol (SNMP) and Syslog. SNMP is a protocol used to monitor and manage network devices like router, switches, and servers. It allows network admins to collect performance data, alerts, and configure devices remotely. Syslog is a log collection system used to store and manage event messages from network devices. Admins can use this information to troubleshoot issues or detect security threats. 
+</p>
+I configure SNMP with read-only (RO) access. Syslog messages get sent to SRV1. I use the command "logging trap debugging" to ensure that messages of all severity level are sent. I then enable logging to the buffer, which is stored in local memory on the device. 
+</p>
+</p>
+To ensure the configures are complete and accurate I enter the command "do show logging" and confirm the commands are enabled.
+
+</p>
+</p>
+<img width="288" alt="image" src="https://github.com/user-attachments/assets/0b83465a-8f17-48d9-889a-a89f6776e4a9" />
+
+![Part 6, Steps 7-8](https://github.com/user-attachments/assets/dc6d73f6-6700-41a0-b9ef-db761e031168)
+</p>
+Step 9:
+</p>
+</p>
+In this step, I use FTP on R1 to upgrade its IOS version. I first set FTP credentials, Transferred the new IOS via FTP from SRV1, and then configured R1 to boot from the new IOS file.
+</p>
+</p>
+I confirmed a successful upgrade using the command "do show version". Lastly, I delete the previous IOS version. 
+</p>
+<img width="524" alt="image" src="https://github.com/user-attachments/assets/f3b7ad9c-7677-42ed-a33c-a00f886297a6" />
+
+![Part 6, Step 9](https://github.com/user-attachments/assets/c5bf42d4-e89a-4060-9a2c-2225fe99bd11)
+</p>
+Step 10:
+</p>
+</p>
+In this step, I configure SSH for secure remote access to all routers and switches. I first generate 4096-bit RSA keys. I then enable SSHv2 only. Next, I used an Access Control List (ACL) to restrict SSH to Office A's PCs. I also disable the use of Telnet since it is unsecure. Additionally, I configure a local account which will be required for users to log in with when connecting via SSH. I set these commands on all devices. 
+</p>
+Lastly, I confirm a successful ssh login from PC1, located in Office A
+</p>
+<img width="325" alt="image" src="https://github.com/user-attachments/assets/43389541-1fc5-4ddb-8649-aa3297d57bef" />
+<img width="697" alt="Part 6, Step 10" src="https://github.com/user-attachments/assets/3d44df45-07ec-4902-b47b-39bdc10099ff" />
+</p>
+Steps 11-12:
+</p>
+In these steps, I configure NAT (Network Address Translation). NAT allows internal devices to communicate with external networks. 
+</p>
+I first set Static NAT on R1 to enable hosts to access SRV1 via IP 203.0.113.113. I then configure the interfaces G0/0/0 and G0/1/0 as outside interfaces as they are connected to the internet. I set G0/0 and G0/1 as inside interfaces as they are connected to CSW1 and CSW2. 
+</p>
+Next I configure dynamic PAT (Port Address Translation) to allow hosts in Office's A and B to access the internet. I first permit Office A's PCs subnet using the command "access-list 2 permit 10.1.0.0 0.0.0.255". I do this same command for the other subnets. The wildcard 0.0.0.255 means that only the last octet varies. I then define the NAT Pool (POOL1) assigning 8 public IPs between 203.0.113.200 - 203.0.113.207. The subnet mask /29 supports 6 usable addresses, as two are reserved for network and broadcast. After, I map ACL 2 to POOL1 and enable PAT. The overload keyword allows multiple internal devices to share a single public IP by using different port numbers. Now, hosts in the specified subnets can access the internet using addresses from POOL1. I confirm hosts can access the internet by pining jeremysitlab.com from PC1.
+</p>
+I then verify Internet Link Failover works by removing and re-configuring the OSPF default-information originate command. I confirm this by entering the command "do show ip route" and we can see that R1's default route has an AD of 2, which is the floating route I configured earlier in the lab. I then try to ping jeremysitlab.com from PC1 and it is still successful. Lastly, I re-enable G0/0/0 and remove and re-configure default-information originate. 
+</p>
+<img width="573" alt="image" src="https://github.com/user-attachments/assets/ab661b55-77cf-4827-861c-7945dccd10ab" />
+<img width="354" alt="Part 6, step 12" src="https://github.com/user-attachments/assets/70cea337-6dac-4a60-a097-ce77090e8c92" />
+
+![Part 6, Step 12-D](https://github.com/user-attachments/assets/93c749ab-1f3d-4bb3-92ca-88617c4e4df1)
+</p>
+Step 13:
+</p>
+Lastly, I disable CDP (Cisco Discovery Protocol) and enable LLDP (Link Layer Discovery Protocol) on all switches. Both these protocols are used for network discovery that help devices identify and share information about directly connected neighbors.
+
+</p>
+<img width="331" alt="image" src="https://github.com/user-attachments/assets/9048a4ec-b8c2-4fe0-abf1-dee7c9f28235" />
+</p>
+<h2>Part Part 7 – Security: ACLs and Layer-2 Security Features </h2>
+<p>
+</p>
+
+</p>
+
+
+</p>
+
+</p>
+Image here
+</p>
+
+
+
+
+</p>
+Step :
+</p>
+</p>
+Your text here!
+</p>
+Image here
+</p>
+</p>
+</p>
+
+</p>
+</p>
+</p>
+</p>
+</p>
 <p>
 <p>
 <img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
