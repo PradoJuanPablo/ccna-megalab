@@ -394,16 +394,122 @@ Lastly, I disable CDP (Cisco Discovery Protocol) and enable LLDP (Link Layer Dis
 </p>
 <h2>Part Part 7 – Security: ACLs and Layer-2 Security Features </h2>
 <p>
-</p>
+<img width="635" alt="image" src="https://github.com/user-attachments/assets/ce2f8d4b-3797-4faf-a61a-5289aa27bf89" />
 
 </p>
 
+</p>
+Step 1:
+</p>
+</p>
+Part 7 is focused on security. In this first step, I created an extended Access Control List (ACL) called OfficeA_to_OfficeB on both DSW-A1 and DSW-A2 to control traffice between the two offices. I allow ICMP traffic, which is used by ping and tracert commands and is used to troubleshoot networks. I then block all other traffic from Office A to Office B. Next, I allow all other traffic that's not explicitly denied, this is to prevent accidently blocking unintended traffic. After, I applied an ACL on VLAN 10, ensuring filtering happens as close to the source as possible.
+</p>
+<img width="400" alt="image" src="https://github.com/user-attachments/assets/be72bc2e-e6db-40a1-99ed-a617b98e9865" />
+</p>
+Step 2:
+</p>
+In this step, I enable port security on F0/1 for all access swicthes to restrict MAC addresses and prevent unauthorized devices from connecting. On switches ASW-A2, ASW-A3, and ASW-B2 I allow for two MAC addresses as each phone and PC will need one as well. The command "switchport port-security mac-address sticky" automatically learn the first connected MAC address and saves them. The command "switchport port-security violation restrict" blocks unauthorized MAC addresses without shutting down the port. 
+</p>
+<img width="321" alt="image" src="https://github.com/user-attachments/assets/f7d50947-b263-4cf0-9184-9bcc5154bea9" />
+</p>
+Step 3:
+</p>
+In this step, I configure DHCP Snooping to prevent rogue DHCP servers and DHCP-based attacks. I first enable DHCP Snooping globally and then enable it on specific VLANs. I then disable Option 82 insertion to avoid DHCP relay issues. I also set uplink ports on interface G0/1-2 as trusted so they forwars DHCP replies. Next, I limit DHCP requests to 15 per second to prevent DHCP Starvation attacks. On ASW-A1, I increase the rate for the Wireless LAN Controller (WLC1) since Wi-Fi clients generate a lot of DHCP requests.  
+</p>
+<img width="311" alt="image" src="https://github.com/user-attachments/assets/076f11a6-e98d-41a2-985c-7c2706abd7dc" />
 
 </p>
+Step 4:
+</p>
+In this last step, I enable Dynamic ARP Inspection (DAI) to prevent ARP spoofing attacks. First, I enable ARP Inspection on the specific VLANs. Then I enable validation checks for source and destination MAC addresses as well as IP. Lastly, I set uplink ports on interfaces G0/1-2 as trusted so they can forward valid ARP messages. This configuration ensures that devices cannot falsely claim another's IP. 
+</p>
+<img width="323" alt="image" src="https://github.com/user-attachments/assets/923f2dbd-3ff0-496d-a80d-cde0556be268" />
 
+</p>
+<h2>Part 8 – IPv6 </h2>
+<img width="638" alt="image" src="https://github.com/user-attachments/assets/af42c18e-0866-4174-bbc4-7c266857edd1" />
+
+<p>
+</p>
+Step 1:
+</p>
+This part is all on IPv6. I first enable IPv6 unicast routing on R1, CSW1 and CSW2 so that the devices can forward IPv6 traffic. 
+</p>
+On R1, I assign an IPv6 addresses to interfaces G0/0/0, G0/1/0, G0/0, and G0/1. For the G0/0 and G0/1 interfaces, I used EUI-64 to generate the interface ID dynamically. The interface ID is automatically derived from the MAC address. 
+</p>
+On CSW1 and CSW2, the commands are the same except for assigning different IPv6 addresses. For Port-Channel 1, I configure IPv6 without assigning a specific address. This allows IPv6 communication without explicitly configuring an address. 
+</p>
+Lastly, I verify a correct configuration using the command "do show ipv6 interface brief. For R1, I can see the four interfaces that I configured, each with a link local address and the global unicast address. On the screenshot for CSW2, we see that for Port-Channel 1, enabling IPv6 with the "ipv6 enable" command automatically generates a link local address. 
+</p>
+<img width="322" alt="image" src="https://github.com/user-attachments/assets/474710e3-5645-482e-a3b1-232757784e66" />
+<img width="775" alt="Part 8, step 1" src="https://github.com/user-attachments/assets/e656baae-d596-4c81-91f9-2fbe317819fb" />
+<img width="740" alt="Part 8, step 1-E" src="https://github.com/user-attachments/assets/b6d3cda5-0c2c-498e-a92a-d6e748475729" />
+</p>
+Step 2:
+</p>
+In this step, I configure two default static routes on R1. The first step is to set up a recursive route, meaning it should only specify the next hop IP address. The next route has to be fully specified, meaning it should specify the exit interface of G0/1/0 and the next hop IP address of 2001:db8:b::1. I set the Administratice distance to 2, which is higher than the default of 1, making it a floating route which will be used if the primary fails. 
+</p>
+<img width="350" alt="image" src="https://github.com/user-attachments/assets/93553a0b-fe81-43d6-bca1-3ac3fb6f9542" />
+
+</p>
+<h2>Part 9 – Wireless  </h2>
+<img width="635" alt="image" src="https://github.com/user-attachments/assets/26314533-616d-408c-9a24-09a6f4086167" />
+
+<p>
+</p>
+Step :
+</p>
+Your text here!
 </p>
 Image here
 </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -411,28 +517,10 @@ Image here
 </p>
 Step :
 </p>
-</p>
 Your text here!
 </p>
 Image here
 </p>
-</p>
-</p>
-
-</p>
-</p>
-</p>
-</p>
-</p>
-<p>
-<p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-</p>
-<br />
-
 <p>
 <img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
