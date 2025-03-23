@@ -8,7 +8,7 @@ This "CCNA Mega Lab" tutorial by Jeremy’s IT Lab is a hands-on walk thorugh th
 
 <h2>Video Demonstration</h2>
 
-- ### [YouTube: CCNA Mega Lab]([https://www.youtube.com/watch?v=2p7-MluKAgE])](https://www.youtube.com/watch?v=2p7-MluKAgE)
+- ### YouTube: CCNA Mega Lab:[([https://www.youtube.com/watch?v=2p7-MluKAgE])](https://www.youtube.com/watch?v=2p7-MluKAgE)
 
 <h2>Environments and Materials Used</h2>
 
