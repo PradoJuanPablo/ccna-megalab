@@ -457,14 +457,43 @@ In this step, I configure two default static routes on R1. The first step is to 
 
 <p>
 </p>
-Step :
+Step 1:
 </p>
-Your text here!
-</p>
-Image here
+In this last section, I will conifigure a wireless LAN using the GUI of WLC1. I first checked connectivity by using the ping command to ensure that PC1 can reach WLC1 with the IP of 10.0.0.7. Once I confirmed connectivity I went to the Web Broswer and entered the URL: https://10.0.0.7. I log in using the credentials provided (Username: admin, Password: adminPW12). 
 </p>
 
+![image](https://github.com/user-attachments/assets/f9ec1e55-8e1b-4d52-b325-fa51dce97aa0)
 
+
+</p>
+Step 2:
+</p>
+In the next step, I create a dynamic interface for Wi-Fi WLAN. A dynamic interface is used for wireless VLANS, allowing traffic segmentation. First, I navigate to the Controller tab and then to Interfaces. I then select New to create a new interface. I then enter in the following details: Interface Name: Wi-Fi, VLAN ID: 40. After I hit Apply. Next, I set the physical and logical information. I set the Port NUmber to 1, the IP address to 10.6.0.2, the Netmask of 255.255.255.0 and the Gateway to 10.6.0.1. Lastly, I enter in the Primary DHCP Server of 10.0.0.76 and hit Apply
+</p>
+
+![image](https://github.com/user-attachments/assets/05e3d70a-5895-4288-b048-5e08f5089376)
+
+<img width="600" alt="Part 9, step 2" src="https://github.com/user-attachments/assets/d3bc3f9d-1eae-4f39-8795-2fc52c5b5b96" />
+
+</p>
+Step 3:
+</p>
+After I create the dynamic interface, I create the Wi-Fi network (SSID). I navigate to the WLAN tab and select Go. From there I create a WI-Fi profile with the SSID of Wi-Fi and the ID of 1. I then checked the "Enabled" box for Status and assigned Wi-Fi as the interface. Next, I navigate to the Security tab and then to Layer 2 Security and enter in WPA+WPA2. After, I check the box for "WPA2 Policy". Under Authentication Key Management, I check the box for "PSK" and enter in the password of "cisco123" for PSK Format. Lastly, I hit apply and hit "Save configuration"
+</p>
+
+![image](https://github.com/user-attachments/assets/79f6339a-6f7d-4811-bb83-332a60eb20a4)
+<img width="691" alt="Part 9, Step 3" src="https://github.com/user-attachments/assets/296cb9a5-931d-4c62-9e6f-8f49f7f6d253" />
+
+</p>
+Step 4:
+</p>
+In this last part, I check that both Lightweight Access Points (LWAP) connect to WLC1. Due to Packet Tracer's limitations, clients won't be able to get DHCP leases, but the APs should still register. I access Laptop 1 and from there navigate to the Config tab and then to Wireless0. There, I set the SSID of Wi-Fi, set the authentication to WPA2-PSK and enter in the passphrase of cisco123. I then ensure that the encryption type is set to AES. 
+</p>
+
+![image](https://github.com/user-attachments/assets/412a4feb-923b-4667-a99c-ece6720c5e8f)
+![Part 9, Step 4](https://github.com/user-attachments/assets/c553b2a9-ae9c-4d68-b887-14059faaee39)
+
+</p>
 
 
 
