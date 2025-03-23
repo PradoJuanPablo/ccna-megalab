@@ -15,7 +15,7 @@ This "CCNA Mega Lab" tutorial by Jeremy’s IT Lab is a hands-on walk thorugh th
 - Cisco Packet Tracer
 - CCNA Mega Lab file:
 https://jitl.jp/mega-lab
-- My configuration notes: [file:///E:/Packet%20Tracer/Mega%20Lab%20Configurations.pdf](https://drive.google.com/file/d/1eSZKhLcuARCgp5TSkYzJEfVhpWAOUlXD/view?usp=sharing)
+- My Configuration Notes: [file:///E:/Packet%20Tracer/Mega%20Lab%20Configurations.pdf](https://drive.google.com/file/d/1eSZKhLcuARCgp5TSkYzJEfVhpWAOUlXD/view?usp=sharing)
   
 
 
